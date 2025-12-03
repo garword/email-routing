@@ -1,141 +1,250 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# Email Routing Manager
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+Aplikasi web modern untuk mengelola Email Routing Cloudflare dengan antarmuka yang user-friendly dan responsif. Dibangun dengan Next.js 15, TypeScript, dan Tailwind CSS.
 
-## ✨ Technology Stack
+## 🚀 Fitur Utama
 
-This scaffold provides a robust foundation built with:
+### ✅ Email Management
+- **Buat Email Routing Baru**: Generate alamat email custom yang diteruskan ke email tujuan
+- **Mode Otomatis**: Generator nama Indonesia acak (contoh: `budisantoso8x9@domain.com`)
+- **Mode Manual**: Input alias email sesuai keinginan
+- **Hapus Email**: Hapus routing rule dari Cloudflare dan database
+- **Daftar Email**: Tampilkan semua email routing yang telah dibuat
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 🎨 User Interface
+- **Modern Design**: Antarmuka yang bersih dan intuitif dengan shadcn/ui
+- **Dark Mode**: Dukungan mode gelap untuk kenyamanan mata
+- **Responsive**: Optimal di desktop dan mobile
+- **Loading States**: Indikator loading saat proses API
+- **Toast Notifications**: Notifikasi sukses/error yang elegan
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 🔐 Keamanan
+- **API Token Management**: Token API Cloudflare yang aman
+- **Environment Variables**: Tidak ada hardcoded credentials
+- **Input Validation**: Validasi input otomatis
+- **Error Handling**: Penanganan error yang komprehensif
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### 📊 Dashboard
+- **Statistics**: Total email, domain aktif, email aktif
+- **Quick Actions**: Tombol refresh dan generate nama cepat
+- **Real-time Updates**: Update otomatis setelah create/delete
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+## 🛠️ Teknologi
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+- **Frontend**: Next.js 15 dengan App Router
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Database**: Prisma ORM dengan SQLite
+- **API**: Cloudflare API v4 integration
+- **Language**: TypeScript 5
+- **State Management**: React Hooks
+- **Notifications**: Sonner
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+## 📋 Prerequisites
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+Sebelum menggunakan aplikasi ini, pastikan:
 
-## 🎯 Why This Scaffold?
+1. **Akun Cloudflare** dengan Email Routing enabled
+2. **Domain** yang sudah dikonfigurasi MX record ke Cloudflare
+3. **API Token** Cloudflare dengan permissions:
+   - `Zone:Read`
+   - `Email Routing Rules:Edit`
+4. **Destination Email** yang sudah diverifikasi di Cloudflare dashboard
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+## 🚀 Installation & Setup
 
-## 🚀 Quick Start
-
+### 1. Clone dan Install Dependencies
 ```bash
-# Install dependencies
+git clone <repository-url>
+cd email-routing-manager
 npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+### 2. Environment Variables
+Buat file `.env` di root project:
+```env
+DATABASE_URL="file:./db/custom.db"
+```
 
-## 🤖 Powered by Z.ai
+### 3. Database Setup
+```bash
+npm run db:push
+```
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+### 4. Jalankan Development Server
+```bash
+npm run dev
+```
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+Aplikasi akan berjalan di `http://localhost:3000`
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
+## 📁 Struktur Project
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── app/
+│   ├── api/
+│   │   ├── cloudflare/
+│   │   │   └── zones/
+│   │   │       └── route.ts          # API untuk fetch zones
+│   │   └── email-routing/
+│   │       ├── route.ts              # GET/POST email routing
+│   │       └── [id]/
+│   │           └── route.ts          # DELETE email routing
+│   ├── layout.tsx                    # Root layout dengan toaster
+│   ├── page.tsx                      # Main application page
+│   └── globals.css                   # Global styles
+├── components/
+│   └── ui/                           # shadcn/ui components
+├── lib/
+│   ├── db.ts                         # Prisma database client
+│   └── utils.ts                      # Utility functions
+├── hooks/
+│   └── use-toast.ts                  # Toast hook
+└── prisma/
+    └── schema.prisma                 # Database schema
 ```
 
-## 🎨 Available Features & Components
+## 🔗 API Endpoints
 
-This scaffold includes a comprehensive set of modern web development tools:
+### Cloudflare Zones
+- **GET** `/api/cloudflare/zones`
+  - Fetch semua active zones dari akun Cloudflare
+  - Response: `{ success: boolean, zones: Zone[] }`
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+### Email Routing
+- **GET** `/api/email-routing`
+  - Fetch semua email routing dari database
+  - Response: `{ success: boolean, emails: EmailRouting[] }`
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+- **POST** `/api/email-routing`
+  - Buat email routing baru
+  - Body: `{ zoneId, aliasPart, destinationEmail }`
+  - Response: `{ success: boolean, email: EmailRouting }`
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+- **DELETE** `/api/email-routing/[id]`
+  - Hapus email routing
+  - Body: `{ ruleId }`
+  - Response: `{ success: boolean, message: string }`
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+## 📊 Database Schema
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+```sql
+CREATE TABLE email_routing (
+  id          TEXT PRIMARY KEY,
+  zoneId      TEXT NOT NULL,
+  zoneName    TEXT NOT NULL,
+  aliasPart   TEXT NOT NULL,
+  fullEmail   TEXT NOT NULL,
+  ruleId      TEXT UNIQUE NOT NULL,    -- UUID dari Cloudflare API
+  destination TEXT NOT NULL,
+  isActive    BOOLEAN DEFAULT true,
+  createdAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updatedAt   DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-## 🤝 Get Started with Z.ai
+## 🎨 UI Components
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+### Main Features
+1. **Header**: Logo, title, dan dark mode toggle
+2. **Create Form**: 
+   - Domain selector dropdown
+   - Auto/Manual mode toggle
+   - Destination email input
+   - Create button dengan loading state
+3. **Email List**: 
+   - Card-based layout
+   - Copy to clipboard functionality
+   - Delete button dengan konfirmasi
+   - Status badges
+4. **Sidebar**: 
+   - Statistics cards
+   - Quick actions
+   - Security info
+
+### Indonesian Name Generator
+```javascript
+const indonesianFirstNames = [
+  "budi", "siti", "agus", "dewi", "eko", "rina", 
+  // ... 30+ nama Indonesia
+];
+
+const indonesianLastNames = [
+  "santoso", "pratama", "wijaya", "kusuma", 
+  // ... 24+ marga Indonesia
+];
+```
+
+## 🔧 Configuration
+
+### Cloudflare API Token
+Token yang digunakan dalam aplikasi:
+- **Permissions**: Zone:Read, Email Routing Rules:Edit
+- **Account ID**: `6543986839c715461d19a855c7afa9d7`
+- **Token**: `S8Use9zdidyGF7lg2FFbUU-mbfSMn2Qb9dHaX9ok`
+
+### Database Configuration
+- **Type**: SQLite
+- **Location**: `./db/custom.db`
+- **ORM**: Prisma
+- **Migrations**: Otomatis dengan `npm run db:push`
+
+## 🚀 Production Deployment
+
+### Build Command
+```bash
+npm run build
+```
+
+### Environment Variables untuk Production
+```env
+DATABASE_URL="file:./db/custom.db"
+NODE_ENV="production"
+```
+
+### Security Notes
+- API Token disimpan sebagai environment variable
+- Tidak ada hardcoded credentials
+- HTTPS untuk production
+- Input validation di backend dan frontend
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push ke branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📝 License
+
+Project ini menggunakan MIT License.
+
+## 🆘 Troubleshooting
+
+### Common Issues
+
+1. **API Error 401**: Check API token permissions
+2. **Zone Not Found**: Pastikan zone status "active"
+3. **Email Creation Failed**: Verifikasi MX record dan destination email
+4. **Database Connection**: Check DATABASE_URL environment variable
+
+### Debug Mode
+Enable Prisma query logging:
+```typescript
+new PrismaClient({
+  log: ['query'],
+})
+```
+
+## 📞 Support
+
+Jika mengalami masalah:
+1. Check dev logs: `tail -f dev.log`
+2. Verify Cloudflare configuration
+3. Check database connection
+4. Validate API token permissions
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+**Email Routing Manager** - Solusi modern untuk mengelola email Cloudflare dengan mudah dan aman.
